@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<title>InvoiceRegister – Registr faktur</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+<h1>InvoiceRegister – Registr faktur</h1>
+</header>
+<main>
+<!-- Přihlášení -->
+<section id="login-section">
+<h2>Přihlášení</h2>
+<form id="login-form">
+<label>
+               Uživatelské jméno:
+<input type="text" id="login-username" required>
+</label>
+<label>
+               Heslo:
+<input type="password" id="login-password" required>
+</label>
+<button type="submit">Přihlásit</button>
+</form>
+<p class="hint">
+           Demo účty:<br>
+<b>spravce / spravce</b> (accountant – vidí vše)<br>
+<b>uzivatel / uzivatel</b> (user – vidí jen své faktury)
+</p>
+</section>
+<!-- Aplikace -->
+<section id="app-section" class="hidden">
+<div class="top-bar">
+<div>
+               Přihlášen: <span id="current-user"></span>
+               (<span id="current-role"></span>)
+</div>
+<button id="logout-btn">Odhlásit</button>
+</div>
+<!-- Přidání faktury -->
+<section class="card">
+<h2>Nová faktura</h2>
+<form id="invoice-form">
+<div class="grid">
+<label>
+                       Číslo faktury:
+<input type="text" id="inv-number" required>
+</label>
+<label>
+                       Klient:
+<input type="text" id="inv-client" required>
+</label>
+<label>
+                       Částka:
+<input type="number" id="inv-amount" step="0.01" required>
+</label>
+<label>
+                       Datum vystavení:
+<input type="date" id="inv-issue" required>
+</label>
+<label>
+                       Datum splatnosti:
+<input type="date" id="inv-due" required>
+</label>
+<label>
+                       Status:
+<select id="inv-status">
+<option value="unpaid">Nezaplaceno</option>
+<option value="paid">Zaplaceno</option>
+</select>
+</label>
+</div>
+<button type="submit">Uložit fakturu</button>
+</form>
+</section>
+<!-- Import CSV -->
+<section class="card">
+<h2>Import faktur z CSV</h2>
+<p>
+               Očekávané sloupce (v tomto pořadí):<br>
+<code>number;client;amount;issue_date;due_date;status;owner</code><br>
+               Datum ve formátu <code>YYYY-MM-DD</code>, status <code>paid</code> / <code>unpaid</code>.<br>
+               Sloupec <code>owner</code> může být prázdný – pak se použije aktuálně přihlášený uživatel.
+</p>
+<input type="file" id="csv-file" accept=".csv">
+<button id="import-btn">Importovat</button>
+<p id="import-result" class="hint"></p>
+</section>
+<!-- Upozornění na po splatnosti -->
+<section class="card">
+<h2>Faktury po splatnosti</h2>
+<table>
+<thead>
+<tr>
+<th>Číslo</th>
+<th>Klient</th>
+<th>Částka</th>
+<th>Splatnost</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody id="overdue-body">
+<!-- doplní JS -->
+</tbody>
+</table>
+</section>
+<!-- Seznam faktur -->
+<section class="card">
+<h2>Všechny faktury</h2>
+<table>
+<thead>
+<tr>
+<th>Číslo</th>
+<th>Klient</th>
+<th>Částka</th>
+<th>Vystavení</th>
+<th>Splatnost</th>
+<th>Status</th>
+<th>Vlastník</th>
+<th>Akce</th>
+</tr>
+</thead>
+<tbody id="invoice-body">
+<!-- doplní JS -->
+</tbody>
+</table>
+</section>
+<!-- Měsíční přehled příjmů -->
+<section class="card">
+<h2>Měsíční přehled příjmů (zaplacené faktury)</h2>
+<table>
+<thead>
+<tr>
+<th>Měsíc</th>
+<th>Součet částek</th>
+</tr>
+</thead>
+<tbody id="report-body">
+<!-- doplní JS -->
+</tbody>
+</table>
+</section>
+</section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
