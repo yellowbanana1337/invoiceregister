@@ -6,7 +6,7 @@ const supabaseAnonKey = "sb_publishable_9vr6nvi6NxoNhnDbvIH2qw_RkPDuewr"
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
-// ---- "uživatelská databáze" ----
+// ---- uživatelé ----
 const USERS = [
    { username: "spravce", password: "spravce", role: "accountant" },
    { username: "uzivatel", password: "uzivatel", role: "user" }
