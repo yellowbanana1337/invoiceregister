@@ -1,7 +1,8 @@
 // ---- Konfigurace Supabase ----
 const supabaseUrl = 'https://ebrxolwhgibtoaahipis.supabase.co';
 const supabaseAnonKey = 'sb_publishable_9vr6nvi6NxoNhnDbvIH2qw_RkPDuewr';
-const supabase = supabase.createClient(supabaseUrl, supabaseAnonKey);
+const supabase = Supabase.createClient(supabaseUrl, supabaseAnonKey);
+
 
 // ---- Uživatelé pro login ----
 const USERS = [
@@ -196,3 +197,4 @@ document.getElementById("import-btn").addEventListener("click", ()=>{
 // ---- Inicializace ----
 document.getElementById("login-form").addEventListener("submit",handleLogin);
 document.getElementById("logout-btn").addEventListener("click",handleLogout);
+
