@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>InvoiceRegister – Registr faktur</title>
 <link rel="stylesheet" href="style.css">
+
 <!-- Supabase CDN -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.6.0/dist/supabase.min.js"></script>
 </head>
@@ -48,11 +49,11 @@
       <h2>Nová faktura</h2>
       <form id="invoice-form">
         <div class="grid">
-          <label>Číslo faktury:<input type="text" id="inv-number" required></label>
-          <label>Klient:<input type="text" id="inv-client" required></label>
-          <label>Částka:<input type="number" id="inv-amount" step="0.01" required></label>
-          <label>Datum vystavení:<input type="date" id="inv-issue" required></label>
-          <label>Datum splatnosti:<input type="date" id="inv-due" required></label>
+          <label>Číslo faktury: <input type="text" id="inv-number" required></label>
+          <label>Klient: <input type="text" id="inv-client" required></label>
+          <label>Částka: <input type="number" id="inv-amount" step="0.01" required></label>
+          <label>Datum vystavení: <input type="date" id="inv-issue" required></label>
+          <label>Datum splatnosti: <input type="date" id="inv-due" required></label>
           <label>Status:
             <select id="inv-status">
               <option value="unpaid">Nezaplaceno</option>
@@ -67,6 +68,7 @@
     <!-- Import CSV -->
     <section class="card">
       <h2>Import faktur z CSV</h2>
+      <p>Očekávané sloupce: <code>number;client;amount;issue_date;due_date;status;owner</code></p>
       <input type="file" id="csv-file" accept=".csv">
       <button id="import-btn">Importovat</button>
       <p id="import-result" class="hint"></p>
@@ -96,12 +98,15 @@
 
     <!-- Měsíční přehled -->
     <section class="card">
-      <h2>Měsíční přehled příjmů</h2>
+      <h2>Měsíční přehled příjmů (zaplacené faktury)</h2>
       <table>
-        <thead><tr><th>Měsíc</th><th>Součet částek</th></tr></thead>
+        <thead>
+          <tr><th>Měsíc</th><th>Součet částek</th></tr>
+        </thead>
         <tbody id="report-body"></tbody>
       </table>
     </section>
+
   </section>
 </main>
 
