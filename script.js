@@ -1,4 +1,3 @@
-// ---- Supabase klient ----
 import { createClient } from '@supabase/supabase-js'
 
 const supabaseUrl = "https://ebrxolwhgibtoaahipis.supabase.co"
@@ -6,15 +5,14 @@ const supabaseAnonKey = "sb_publishable_9vr6nvi6NxoNhnDbvIH2qw_RkPDuewr"
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
-// ---- uživatelé ----
 const USERS = [
    { username: "spravce", password: "spravce", role: "accountant" },
    { username: "uzivatel", password: "uzivatel", role: "user" }
 ];
-let currentUser = null;
-let invoices = [];
 
-// ---- načtení faktur ze Supabase ----
+let currentUser = null;
+let invoices = []
+
 async function loadInvoices() {
     const { data, error } = await supabase.from('invoices').select('*')
     if (error) {
@@ -25,13 +23,11 @@ async function loadInvoices() {
     }
 }
 
-// ---- přidání faktury do Supabase ----
 async function saveInvoice(inv) {
     const { data, error } = await supabase.from('invoices').insert([inv])
     if (error) console.error('Insert error:', error)
 }
 
-// ---- pomocné funkce ----
 function formatDate(dStr) {
    if (!dStr) return "";
    const d = new Date(dStr);
@@ -56,7 +52,6 @@ function isOverdue(inv) {
    return due < today;
 }
 
-// ---- vykreslování ----
 function renderInvoices() {
    const tbody = document.getElementById("invoice-body");
    tbody.innerHTML = "";
@@ -125,7 +120,6 @@ async function redrawAll() {
    renderMonthlyReport();
 }
 
-// ---- login / logout ----
 function handleLogin(ev) {
    ev.preventDefault();
    const u = document.getElementById("login-username").value.trim();
@@ -151,7 +145,6 @@ function handleLogout() {
    document.getElementById("app-section").classList.add("hidden");
 }
 
-// ---- přidání faktury ----
 async function handleInvoiceSubmit(ev) {
    ev.preventDefault();
    if (!currentUser) return;
@@ -179,7 +172,6 @@ async function handleInvoiceSubmit(ev) {
    document.getElementById("invoice-form").reset();
 }
 
-// ---- přepínání statusu ----
 async function handleToggleStatus(ev) {
    const btn = ev.target.closest(".toggle-status-btn");
    if (!btn) return;
@@ -197,7 +189,6 @@ async function handleToggleStatus(ev) {
    redrawAll();
 }
 
-// ---- inicializace ----
 document.addEventListener("DOMContentLoaded", () => {
    document.getElementById("login-form").addEventListener("submit", handleLogin);
    document.getElementById("logout-btn").addEventListener("click", handleLogout);
