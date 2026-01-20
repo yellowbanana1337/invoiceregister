@@ -15,57 +15,59 @@
 <h2>Přihlášení</h2>
 <form id="login-form">
 <label>
-               Uživatelské jméno:
+Uživatelské jméno:
 <input type="text" id="login-username" required>
 </label>
 <label>
-               Heslo:
+Heslo:
 <input type="password" id="login-password" required>
 </label>
 <button type="submit">Přihlásit</button>
 </form>
 <p class="hint">
-           Demo účty:<br>
+Demo účty:<br>
 <b>spravce / spravce</b> (accountant – vidí vše)<br>
 <b>uzivatel / uzivatel</b> (user – vidí jen své faktury)
 </p>
 </section>
+
 <!-- Aplikace -->
 <section id="app-section" class="hidden">
 <div class="top-bar">
 <div>
-               Přihlášen: <span id="current-user"></span>
-               (<span id="current-role"></span>)
+Přihlášen: <span id="current-user"></span>
+(<span id="current-role"></span>)
 </div>
 <button id="logout-btn">Odhlásit</button>
 </div>
+
 <!-- Přidání faktury -->
 <section class="card">
 <h2>Nová faktura</h2>
 <form id="invoice-form">
 <div class="grid">
 <label>
-                       Číslo faktury:
+Číslo faktury:
 <input type="text" id="inv-number" required>
 </label>
 <label>
-                       Klient:
+Klient:
 <input type="text" id="inv-client" required>
 </label>
 <label>
-                       Částka:
+Částka:
 <input type="number" id="inv-amount" step="0.01" required>
 </label>
 <label>
-                       Datum vystavení:
+Datum vystavení:
 <input type="date" id="inv-issue" required>
 </label>
 <label>
-                       Datum splatnosti:
+Datum splatnosti:
 <input type="date" id="inv-due" required>
 </label>
 <label>
-                       Status:
+Status:
 <select id="inv-status">
 <option value="unpaid">Nezaplaceno</option>
 <option value="paid">Zaplaceno</option>
@@ -75,19 +77,21 @@
 <button type="submit">Uložit fakturu</button>
 </form>
 </section>
+
 <!-- Import CSV -->
 <section class="card">
 <h2>Import faktur z CSV</h2>
 <p>
-               Očekávané sloupce (v tomto pořadí):<br>
+Očekávané sloupce (v tomto pořadí):<br>
 <code>number;client;amount;issue_date;due_date;status;owner</code><br>
-               Datum ve formátu <code>YYYY-MM-DD</code>, status <code>paid</code> / <code>unpaid</code>.<br>
-               Sloupec <code>owner</code> může být prázdný – pak se použije aktuálně přihlášený uživatel.
+Datum ve formátu <code>YYYY-MM-DD</code>, status <code>paid</code> / <code>unpaid</code>.<br>
+Sloupec <code>owner</code> může být prázdný – pak se použije aktuálně přihlášený uživatel.
 </p>
 <input type="file" id="csv-file" accept=".csv">
 <button id="import-btn">Importovat</button>
 <p id="import-result" class="hint"></p>
 </section>
+
 <!-- Upozornění na po splatnosti -->
 <section class="card">
 <h2>Faktury po splatnosti</h2>
@@ -106,6 +110,7 @@
 </tbody>
 </table>
 </section>
+
 <!-- Seznam faktur -->
 <section class="card">
 <h2>Všechny faktury</h2>
@@ -127,6 +132,7 @@
 </tbody>
 </table>
 </section>
+
 <!-- Měsíční přehled příjmů -->
 <section class="card">
 <h2>Měsíční přehled příjmů (zaplacené faktury)</h2>
@@ -142,8 +148,11 @@
 </tbody>
 </table>
 </section>
+
 </section>
 </main>
-<script src="script.js"></script>
+
+<!-- Skript jako module -->
+<script type="module" src="script.js"></script>
 </body>
 </html>
